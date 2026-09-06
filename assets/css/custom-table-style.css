@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Custom Elementor Responsive HTML Table Stylesheet
+   ========================================================================== */
+
+.ce-table-main-wrapper {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    overflow: hidden; /* Ensures border-radius cuts table corners cleanly */
+}
+
+/* Top Header Title Wrapper */
+.ce-table-title-wrap {
+    padding: 15px 20px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.ce-table-title {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Table Scroll Wrapper */
+.ce-table-scrollable-inner {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Active horizontal scrolling */
+.ce-table-scrollable-inner.ce-table-scroll-active {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+/* Main Table Element */
+.ce-custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    table-layout: auto;
+}
+
+/* Column Header Cells */
+.ce-custom-table thead tr th {
+    box-sizing: border-box;
+    font-weight: 600;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 0;
+    word-break: normal;
+    white-space: nowrap; /* Keeps headers clean without ugly wraps unless defined */
+}
+
+/* Table Body Rows */
+.ce-custom-table tbody tr {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Table Body Cells */
+.ce-custom-table tbody tr td,
+.ce-custom-table tbody tr th {
+    box-sizing: border-box;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 0;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    word-break: break-word;
+}
+
+/* First column headers */
+.ce-custom-table tbody tr th.ce-table-th-row {
+    font-weight: 600;
+}
+
+/* Premium styled scrollbar for active scroll wrapper */
+.ce-table-scrollable-inner.ce-table-scroll-active::-webkit-scrollbar {
+    height: 8px;
+}
+
+.ce-table-scrollable-inner.ce-table-scroll-active::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 100px;
+}
+
+.ce-table-scrollable-inner.ce-table-scroll-active::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 100px;
+    border: 2px solid #f8fafc;
+}
+
+.ce-table-scrollable-inner.ce-table-scroll-active::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Pulse animation for mobile swipe/scroll hint */
+.ce-table-swipe-hint {
+    display: none;
+    text-align: center;
+    font-size: 13px;
+    font-style: italic;
+    color: #64748b;
+    margin-top: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    animation: cePulseHint 2s infinite ease-in-out;
+}
+
+@keyframes cePulseHint {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translateX(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(3px);
+    }
+}
+
+/* Show swipe/scroll hint on screens smaller than desktop (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .ce-table-swipe-hint {
+        display: block;
+    }
+}

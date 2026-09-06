@@ -1,0 +1,331 @@
+/* Custom Elementor Widget - Promo Banner Widget Styles */
+
+.ce-promo-banner-wrap {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.ce-promo-banner {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 24px;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-sizing: border-box;
+  gap: 30px;
+}
+
+/* Background Overlay */
+.ce-promo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.75);
+  z-index: 1;
+}
+
+/* Radiating Dashed Circle Pattern */
+.ce-promo-radial-pattern {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, transparent 30%, rgba(255, 255, 255, 0.03) 31%, rgba(255, 255, 255, 0.03) 70%, transparent 71%);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.ce-promo-radial-pattern::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.ce-promo-radial-pattern::after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
+  border: 1px dashed rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+}
+
+/* Content Z-indexing */
+.ce-promo-left,
+.ce-promo-right {
+  position: relative;
+  z-index: 3;
+}
+
+.ce-promo-left {
+  flex: 1;
+  max-width: 60%;
+}
+
+.ce-promo-right {
+  flex-shrink: 0;
+}
+
+/* Title & Inline CTA Button */
+.ce-promo-title {
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+/* Green Capsule Switch Button */
+.ce-promo-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #22c55e;
+  padding: 8px 10px 8px 18px;
+  border-radius: 30px;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 8px;
+  vertical-align: middle;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.ce-promo-inline-btn:hover {
+  background-color: #16a34a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+}
+
+.ce-promo-btn-dot {
+  width: 22px;
+  height: 22px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-left: 12px;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.ce-promo-inline-btn:hover .ce-promo-btn-dot {
+  transform: scale(1.1);
+}
+
+/* Floating Contact Card */
+.ce-promo-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Specialist Info Row */
+.ce-promo-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Stacked Avatars */
+.ce-promo-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.ce-promo-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+  margin-left: -10px;
+}
+
+.ce-promo-avatar-img:first-child {
+  margin-left: 0;
+}
+
+/* Specialist Text and Badge */
+.ce-promo-specialist-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.ce-promo-specialist-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.ce-promo-badge {
+  background-color: #22c55e;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.ce-promo-specialist-sub {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Card Description */
+.ce-promo-card-desc {
+  font-size: 16px;
+  line-height: 1.45;
+  color: #0f172a;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Card Footer Call to Action */
+.ce-promo-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.ce-promo-phone-link {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  text-decoration: none;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.ce-promo-phone-link:hover {
+  color: #ff5500;
+  border-bottom-color: #ff5500;
+}
+
+/* Orange Arrow Button */
+.ce-promo-arrow-btn {
+  width: 44px;
+  height: 44px;
+  background-color: #ff5500;
+  color: #ffffff !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+  font-size: 18px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
+}
+
+.ce-promo-arrow-btn:hover {
+  background-color: #e04b00;
+  transform: rotate(45deg);
+  box-shadow: 0 6px 16px rgba(255, 85, 0, 0.45);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .ce-promo-banner {
+    flex-direction: column !important;
+    padding: 40px !important;
+    min-height: auto !important;
+    text-align: center !important;
+  }
+
+  .ce-promo-left {
+    max-width: 100% !important;
+  }
+
+  .ce-promo-title {
+    font-size: 34px !important;
+  }
+
+  .ce-promo-card {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 30px auto 0 !important;
+  }
+
+  .ce-promo-radial-pattern {
+    left: 50% !important;
+    width: 400px !important;
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .ce-promo-banner {
+    padding: 40px 20px !important;
+  }
+
+  .ce-promo-title {
+    font-size: 28px !important;
+  }
+
+  .ce-promo-inline-btn {
+    padding: 6px 10px 6px 14px !important;
+    font-size: 13px !important;
+    margin: 4px 4px !important;
+  }
+
+  .ce-promo-btn-dot {
+    width: 18px !important;
+    height: 18px !important;
+    margin-left: 8px !important;
+  }
+
+  .ce-promo-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 24px !important;
+    gap: 15px !important;
+    margin-top: 25px !important;
+  }
+  
+  .ce-promo-card-desc {
+    font-size: 15px !important;
+  }
+}

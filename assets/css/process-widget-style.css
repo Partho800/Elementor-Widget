@@ -1,0 +1,369 @@
+/* Custom Elementor Widget - Alternating Process Steps Timeline Styles */
+
+.ce-process-steps-section {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.ce-process-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+}
+
+/* Individual Step Row */
+.ce-process-step-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.ce-process-step-row.ce-layout-image-left {
+  flex-direction: row;
+}
+
+.ce-process-step-row.ce-layout-image-right {
+  flex-direction: row-reverse;
+}
+
+/* Columns: Smaller Image Section, Wider Text Card Section */
+.ce-process-col-image {
+  flex: 0 0 42%;
+  max-width: 42%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.ce-process-col-card {
+  flex: 0 0 55%;
+  max-width: 55%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image Box */
+.ce-process-image-wrap {
+  width: 100%;
+  height: 285px !important;
+  min-height: 285px !important;
+  max-height: 285px !important;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.ce-process-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-grow: 1;
+}
+
+/* Content Card */
+.ce-process-card {
+  background-color: #ffffff;
+  padding: 44px 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  height: 285px !important;
+  min-height: 285px !important;
+  max-height: 285px !important;
+  overflow: hidden;
+}
+
+
+/* Step Number */
+.ce-process-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ff5500;
+  margin-bottom: 14px;
+  line-height: 1;
+  display: inline-block;
+  letter-spacing: -0.5px;
+}
+
+/* Step Title */
+.ce-process-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 14px 0;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+
+/* Step Description */
+.ce-process-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Timeline Curved Connector Line */
+.ce-process-connector {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ce-process-connector-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ce-process-connector-path {
+  stroke: #475569;
+  stroke-width: 2px;
+  stroke-dasharray: 6 6;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.ce-process-arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ce-process-arrow.ce-arrow-left svg {
+  transform: rotate(180deg);
+}
+
+.ce-process-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ce-process-arrow-head {
+  fill: #ff5500;
+}
+/* Step Button */
+.ce-process-btn {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Play Button Styling */
+.ce-process-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #ff5500;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(255, 85, 0, 0.4);
+  transition: all 0.3s ease;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.ce-process-image-wrap:hover .ce-process-play-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.ce-process-image-wrap:hover .ce-process-play-btn svg path {
+  fill: #ff5500;
+}
+
+.ce-process-play-btn svg {
+  margin-left: 3px;
+  transition: fill 0.3s ease;
+}
+
+.ce-process-image-wrap[data-media-type="video"] {
+  cursor: pointer;
+}
+
+/* Video Lightbox Styles */
+.ce-video-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ce-video-lightbox.ce-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ce-video-lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+.ce-video-lightbox-content {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+  aspect-ratio: 16/9;
+  background: transparent;
+  z-index: 10;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.ce-video-lightbox.ce-active .ce-video-lightbox-content {
+  transform: scale(1);
+}
+
+.ce-video-lightbox-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ce-video-lightbox-container iframe,
+.ce-video-lightbox-container video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ce-video-lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 36px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 12;
+  line-height: 1;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ce-video-lightbox-close:hover {
+  color: #ff5500;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+  .ce-process-step-row,
+  .ce-process-step-row.ce-layout-image-left,
+  .ce-process-step-row.ce-layout-image-right {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .ce-process-col-image,
+  .ce-process-col-card {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .ce-process-image-wrap {
+    height: 285px !important;
+  }
+
+  .ce-process-card {
+    height: auto !important;
+    min-height: 285px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .ce-process-connector {
+    display: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ce-process-card {
+    padding: 30px 24px;
+    min-height: auto !important;
+  }
+
+  .ce-process-number {
+    font-size: 28px;
+  }
+
+  .ce-process-title {
+    font-size: 20px;
+  }
+
+  .ce-process-image-wrap {
+    height: 220px !important;
+  }
+}

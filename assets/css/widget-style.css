@@ -1,0 +1,466 @@
+/* Custom Elementor Widget - What We Do Section Styles */
+
+.ce-what-we-do-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+.ce-what-we-do-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 -15px;
+}
+
+.ce-col-left,
+.ce-col-right {
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.ce-col-left {
+  flex: 0 0 48%;
+  max-width: 48%;
+}
+
+.ce-col-right {
+  flex: 0 0 52%;
+  max-width: 52%;
+}
+
+/* Feature Cards Grid (2 Columns) */
+.ce-cards-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.ce-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 1 50%;
+  min-width: 0;
+  transition: transform 0.3s ease, margin-top 0.3s ease;
+}
+
+.ce-card-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #f0f2f5;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ce-card-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.ce-card-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+}
+
+.ce-card-item:hover .ce-card-icon-box {
+  transform: scale(1.08);
+}
+
+.ce-card-icon-box img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.ce-card-icon-box svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.ce-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 10px 0;
+  line-height: 1.3;
+}
+
+.ce-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #718096;
+  margin: 0;
+}
+
+/* Right Content Area */
+.ce-right-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15px;
+}
+
+.ce-subheading {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b5cf6;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.ce-main-heading {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+}
+
+.ce-main-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #64748b;
+  margin-bottom: 28px;
+}
+
+/* Sub-feature & Image Split Layout */
+.ce-details-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.ce-checklist-col {
+  flex: 1 1 200px;
+  min-width: 200px;
+}
+
+.ce-checklist-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+}
+
+.ce-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ce-checklist-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 12px;
+}
+
+.ce-checklist-item:last-child {
+  margin-bottom: 0;
+}
+
+.ce-check-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.12);
+  color: #8b5cf6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.ce-check-icon svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+/* Media / Image Composition Box */
+.ce-media-col {
+  position: relative;
+  flex: 0 0 240px;
+  max-width: 280px;
+  margin-top: 10px;
+}
+
+.ce-main-image-wrap {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ce-main-image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.ce-overlay-image-wrap {
+  position: absolute;
+  bottom: -24px;
+  right: -20px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.ce-overlay-image-wrap:hover {
+  transform: scale(1.06);
+}
+
+.ce-overlay-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* CTA Button */
+.ce-button-wrap {
+  margin-top: 10px;
+}
+
+.ce-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222938;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 6px 18px rgba(34, 41, 56, 0.18);
+  cursor: pointer;
+}
+
+.ce-button:hover {
+  background-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.3);
+}
+
+.ce-button-icon {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 991px) {
+  .ce-col-left,
+  .ce-col-right {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  .ce-col-left {
+    margin-bottom: 40px !important;
+  }
+
+  .ce-right-content {
+    padding-left: 0 !important;
+  }
+
+  .ce-cards-grid .ce-card-item:nth-child(2n) {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .ce-cards-grid {
+    flex-direction: column !important;
+  }
+
+  .ce-cards-col-left,
+  .ce-cards-col-right {
+    transform: none !important;
+    margin-top: 0 !important;
+  }
+
+  .ce-main-heading {
+    font-size: 28px !important;
+  }
+
+  .ce-details-split {
+    flex-direction: column !important;
+  }
+
+  .ce-media-col {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  .ce-overlay-image-wrap {
+    right: 10px !important;
+    bottom: -15px !important;
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+/* Play Button Styling for What We Do Section */
+.ce-main-image-wrap:hover .ce-process-play-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.ce-main-image-wrap:hover .ce-process-play-btn svg path {
+  fill: #ff5500;
+}
+
+/* Video Lightbox Styles */
+.ce-video-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ce-video-lightbox.ce-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ce-video-lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+}
+
+.ce-video-lightbox-content {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+  aspect-ratio: 16/9;
+  background: transparent;
+  z-index: 10;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.ce-video-lightbox.ce-active .ce-video-lightbox-content {
+  transform: scale(1);
+}
+
+.ce-video-lightbox-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ce-video-lightbox-container iframe,
+.ce-video-lightbox-container video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ce-video-lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 36px;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 12;
+  line-height: 1;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ce-video-lightbox-close:hover {
+  color: #ff5500;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.ce-process-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #ff5500;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(255, 85, 0, 0.4);
+  transition: all 0.3s ease;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.ce-process-play-btn svg {
+  margin-left: 3px;
+}

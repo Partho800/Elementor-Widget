@@ -1,0 +1,338 @@
+/* Custom Elementor Widget - Sticky Projects Section Styles */
+
+.ce-sticky-projects-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  position: relative;
+}
+
+.ce-sticky-projects-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 -15px;
+  align-items: flex-start;
+}
+
+.ce-sticky-left-col,
+.ce-sticky-right-col {
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+/* Left Column: Stacking Cards Container */
+.ce-sticky-left-col {
+  flex: 0 0 58%;
+  max-width: 58%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+/* Sticky Stacking Project Card */
+.ce-project-card-item {
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  height: 440px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #1e293b;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.ce-project-card-item:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.ce-project-card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.ce-project-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ce-project-card-item:hover .ce-project-card-img {
+  transform: scale(1.06);
+}
+
+/* Bottom Gradient Overlay on Card */
+.ce-project-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65%;
+  top: auto;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 23, 42, 0.9) 100%);
+  z-index: 1;
+  transition: opacity 0.4s ease, height 0.4s ease;
+  pointer-events: none;
+}
+
+/* Card Content (Title & Reveal Text at Bottom Left) */
+.ce-project-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 36px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.4s ease;
+}
+
+.ce-project-card-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #a78bfa;
+  margin-bottom: 6px;
+}
+
+.ce-project-card-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ce-project-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2e8f0;
+  margin: 0 0 16px 0;
+  max-width: 90%;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Inner Card CTA Button */
+.ce-project-inner-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  flex-shrink: 0;
+  width: auto !important;
+  max-width: max-content !important;
+  transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ce-project-inner-btn span {
+  white-space: nowrap !important;
+  display: inline-block !important;
+  line-height: 1.2 !important;
+}
+
+.ce-project-inner-btn i {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.ce-project-inner-btn svg {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 14px !important;
+  height: 14px !important;
+  max-width: 14px !important;
+  max-height: 14px !important;
+  fill: currentColor !important;
+}
+
+.ce-project-inner-btn:hover {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* Display Modes: Reveal on Hover */
+.ce-reveal-hover {
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+}
+
+.ce-project-card-item:hover .ce-reveal-hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Right Column: Sticky Info Panel */
+.ce-sticky-right-col {
+  flex: 0 0 42%;
+  max-width: 42%;
+  position: sticky;
+  top: 120px;
+  align-self: flex-start;
+}
+
+.ce-sticky-right-content {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ce-sticky-subheading {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8b5cf6;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.ce-sticky-heading {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0f172a;
+  margin: 0 0 18px 0;
+}
+
+.ce-sticky-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+.ce-sticky-btn-wrap {
+  margin-top: 10px;
+}
+
+.ce-sticky-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222938;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 34px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 6px 18px rgba(34, 41, 56, 0.18);
+  cursor: pointer;
+}
+
+.ce-sticky-btn:hover {
+  background-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.3);
+}
+
+.ce-sticky-btn-icon {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Responsive Rules for Sticky Projects Widget */
+@media (max-width: 1024px) {
+  .ce-sticky-left-col,
+  .ce-sticky-right-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  .ce-sticky-right-col {
+    margin-top: 0 !important;
+    margin-bottom: 40px !important;
+    order: -1 !important;
+  }
+
+  .ce-sticky-right-content {
+    padding-left: 0 !important;
+  }
+
+  .ce-project-card-item {
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  .ce-reveal-hover {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .ce-project-card-item {
+    height: 340px !important; /* Automatic mobile height */
+  }
+
+  .ce-project-card-content {
+    padding: 24px 20px !important; /* Smaller padding for mobile */
+  }
+
+  .ce-sticky-heading {
+    font-size: 28px !important;
+  }
+
+  .ce-project-card-title {
+    font-size: 20px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .ce-project-card-desc {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .ce-project-inner-btn {
+    padding: 10px 18px !important;
+    font-size: 13px !important;
+  }
+}

@@ -1,0 +1,118 @@
+/* Custom Elementor Widget - Infinite Marquee Ticker Bar Styles */
+
+.ce-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  background: #ff4500;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.ce-marquee-wrapper {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: ce-marquee-scroll 20s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on Hover */
+.ce-marquee-container.ce-pause-on-hover:hover .ce-marquee-wrapper {
+  animation-play-state: paused !important;
+}
+
+/* Reverse Direction */
+.ce-marquee-container.ce-direction-reverse .ce-marquee-wrapper {
+  animation-direction: reverse;
+}
+
+.ce-marquee-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ce-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.ce-marquee-item:hover {
+  color: #fff066;
+}
+
+.ce-marquee-text {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* Separator Icon */
+.ce-marquee-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.ce-marquee-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: inline-block;
+}
+
+/* Icon Animations */
+.ce-icon-spin .ce-marquee-icon {
+  animation: ce-icon-spin-anim 8s linear infinite;
+}
+
+.ce-icon-pulse .ce-marquee-icon {
+  animation: ce-icon-pulse-anim 2s ease-in-out infinite alternate;
+}
+
+@keyframes ce-marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ce-icon-spin-anim {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ce-icon-pulse-anim {
+  from {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
