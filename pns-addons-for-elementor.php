@@ -137,10 +137,11 @@ function pns_addons_for_elementor_add_categories( $elements_manager ) {
         [
             'title' => esc_html__( 'PNS Addons', 'pns-addons-for-elementor' ),
             'icon'  => 'fa fa-plug',
-        ]
+        ],
+        0
     );
 }
-add_action( 'elementor/elements/categories_registered', 'pns_addons_for_elementor_add_categories' );
+add_action( 'elementor/elements/categories_registered', 'pns_addons_for_elementor_add_categories', 1 );
 
 /**
  * -----------------------------------------------------------------------------
@@ -162,11 +163,11 @@ add_shortcode( 'pns_modern_slider', 'pns_addons_for_elementor_slider_shortcode' 
 function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
     // A. Elementor-Addon Widgets (7 Widgets)
     $mss_widgets = [
+        'pns-accordion-slider-widget.php' => 'PNS_Accordion_Slider_Widget',
         'pns-slider-widget.php'           => 'PNS_Slider_Widget',
         'pns-button-widget.php'           => 'PNS_Animated_Button_Widget',
         'pns-timeline-widget.php'         => 'PNS_Timeline_Widget',
         'pns-video-card-widget.php'       => 'PNS_Video_Card_Widget',
-        'pns-accordion-slider-widget.php' => 'PNS_Accordion_Slider_Widget',
         'pns-image-hover-card-widget.php' => 'PNS_Image_Hover_Card_Widget',
         'pns-carousel-widget.php'         => 'PNS_Premium_Carousel_Widget',
     ];
