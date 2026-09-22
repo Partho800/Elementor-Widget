@@ -820,8 +820,11 @@
    ================================================ */
 .mss-premium-carousel-wrapper {
     position: relative;
-    width: 100%;
-    padding: 20px 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    padding: 15px 0 20px 0;
+    box-sizing: border-box !important;
 }
 
 .mss-pc-card {
@@ -1014,8 +1017,13 @@
 
 /* Swiper Navigation Fixes */
 .mss-pc-swiper {
-    padding: 10px 10px 60px 10px !important;
-    margin: -10px !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    padding: 10px 5px 60px 5px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
 }
 
 .mss-pc-next, .mss-pc-prev {
@@ -1031,8 +1039,8 @@
     transform: translateY(-50%) !important;
 }
 
-.mss-pc-next { right: -15px !important; }
-.mss-pc-prev { left: -15px !important; }
+.mss-pc-next { right: 10px !important; }
+.mss-pc-prev { left: 10px !important; }
 
 .mss-pc-next:hover, .mss-pc-prev:hover {
     background: #3b82f6 !important;
