@@ -36,9 +36,14 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 		return [ 'custom-elementor-category' ];
 	}
 
-	/**
-	 * Register widget controls.
-	 */
+	public function get_style_depends() {
+		return [ 'pns-accordion-slider-style' ];
+	}
+
+	public function get_script_depends() {
+		return [ 'pns-accordion-slider' ];
+	}
+
 	protected function register_controls() {
 
 		$this->start_controls_section(
@@ -522,6 +527,7 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 		}
 
 		$this->add_render_attribute( 'wrapper', 'class', 'mss-accordion-wrapper' );
+		$this->add_render_attribute( 'wrapper', 'data-slides', (int) $settings['items_to_show'] );
 		if ( count( $settings['cards'] ) > $settings['items_to_show'] && 'yes' === $settings['enable_carousel'] ) {
 			$this->add_render_attribute( 'wrapper', 'class', 'swiper-container mss-accordion-carousel' );
 			$this->add_render_attribute( 'list', 'class', 'swiper-wrapper' );
@@ -574,87 +580,6 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 			<?php endif; ?>
 		</div>
 
-		<?php
-		// Inline style via wp_add_inline_style (WordPress.org compliant)
-		$accordion_css = '
-			.mss-accordion-wrapper{width:100%;overflow:hidden;padding:20px 0}
-			.mss-accordion-list{display:flex;width:100%;list-style:none;padding:0;margin:0}
-			.mss-accordion-item{position:relative;flex:1;min-width:244px;background-size:cover;background-position:center;transition:flex var(--mss-speed,.5s) cubic-bezier(.4,0,.2,1),min-width var(--mss-speed,.5s) cubic-bezier(.4,0,.2,1);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:25px;will-change:flex}
-			.mss-accordion-item.active{flex:0 0 420px}
-			.mss-accordion-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,.6) 100%);opacity:.5;transition:opacity .3s;z-index:1}
-			.mss-accordion-icon{position:absolute;top:25px;right:25px;width:50px;height:50px;background-color:#ccff00;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.5) rotate(0deg);transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:5}
-			.mss-accordion-item:hover .mss-accordion-icon{opacity:1;transform:scale(1) rotate(0deg)}
-			.mss-accordion-content{position:relative;z-index:5;background:#fff;border-radius:12px;transform:translateY(24px);opacity:0;transition:opacity .3s ease var(--mss-delay,.2s),transform .4s cubic-bezier(.25,1,.5,1) var(--mss-delay,.2s);box-shadow:0 10px 30px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:5px;pointer-events:none}
-			.mss-accordion-item.active .mss-accordion-content{transform:translateY(0);opacity:1;pointer-events:auto}
-			.mss-accordion-title{margin:0;font-size:22px;font-weight:700;color:#1a1a1a;line-height:1.2}
-			.mss-accordion-desc{margin:0;font-size:15px;color:#555;line-height:1.5}
-			.mss-accordion-link{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10}
-			.swiper-slide{transition:flex .6s ease}
-			@media(max-width:767px){
-				.mss-accordion-list{flex-direction:column;gap:12px}
-				.mss-accordion-item{flex:none !important;width:100% !important;min-width:100% !important;height:260px !important;transition:height .4s ease !important}
-				.mss-accordion-item.active{flex:none !important;width:100% !important;height:320px !important}
-				.mss-accordion-content{width:100% !important;max-width:100% !important;box-sizing:border-box}
-				.mss-accordion-icon{display:none}
-			}
-			@media(min-width:768px) and (max-width:1024px){
-				.mss-accordion-item{min-width:140px}
-				.mss-accordion-item.active{flex:0 0 320px}
-				.mss-accordion-content{width:280px !important}
-			}
-		';
-		wp_add_inline_style( 'custom-elementor-widgets-style', $accordion_css );
-
-		// Inline script via wp_add_inline_script (WordPress.org compliant)
-		$items_to_show = (int) $settings['items_to_show'];
-		$inline_js = "jQuery(document).ready(function($) {
-			function initAccordion(\$wrapper) {
-				var \$items = \$wrapper.find('.mss-accordion-item');
-				var hoverTimer = null;
-				var leaveTimer = null;
-				\$items.on('mouseenter', function() {
-					if (\$wrapper.hasClass('mss-accordion-carousel')) return;
-					clearTimeout(hoverTimer);
-					clearTimeout(leaveTimer);
-					var \$hovered = $(this);
-					hoverTimer = setTimeout(function() {
-						\$items.removeClass('active');
-						\$hovered.addClass('active');
-					}, 60);
-				});
-				\$wrapper.on('mouseleave', function() {
-					if (\$wrapper.hasClass('mss-accordion-carousel')) return;
-					clearTimeout(hoverTimer);
-					leaveTimer = setTimeout(function() {
-						\$items.removeClass('active');
-						\$items.first().addClass('active');
-					}, 80);
-				});
-			}
-			$('.mss-accordion-wrapper').each(function() {
-				var \$this = $(this);
-				initAccordion(\$this);
-				if (\$this.hasClass('mss-accordion-carousel')) {
-					var settings = {
-						slidesPerView: {$items_to_show},
-						spaceBetween: 20,
-						loop: true,
-						pagination: { el: '.swiper-pagination', clickable: true },
-						navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-						breakpoints: {
-							320: { slidesPerView: 1 },
-							768: { slidesPerView: 2 },
-							1024: { slidesPerView: {$items_to_show} }
-						}
-					};
-					if (typeof Swiper !== 'undefined') {
-						new Swiper(\$this[0], settings);
-					}
-				}
-			});
-		});"; 
-		wp_add_inline_script( 'swiper', $inline_js );
-		?>
 		<?php
 	}
 }

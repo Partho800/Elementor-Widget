@@ -1,0 +1,171 @@
+/* ==========================================================================
+   PNS Accordion Slider Widget Styles
+   ========================================================================== */
+
+.mss-accordion-wrapper {
+	width: 100%;
+	overflow: hidden;
+	padding: 20px 0;
+}
+
+.mss-accordion-list {
+	display: flex;
+	width: 100%;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	gap: 15px;
+}
+
+.mss-accordion-item {
+	position: relative;
+	flex: 1;
+	min-width: 244px;
+	background-size: cover;
+	background-position: center;
+	background-color: #1a1a1a;
+	transition: flex var(--mss-speed, 0.5s) cubic-bezier(0.4, 0, 0.2, 1),
+	            min-width var(--mss-speed, 0.5s) cubic-bezier(0.4, 0, 0.2, 1);
+	cursor: pointer;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 25px;
+	will-change: flex;
+	min-height: 320px;
+	border-radius: 12px;
+}
+
+.mss-accordion-item.active {
+	flex: 0 0 420px;
+}
+
+.mss-accordion-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%);
+	opacity: 0.8;
+	transition: opacity 0.3s;
+	z-index: 1;
+}
+
+.mss-accordion-icon {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	width: 50px;
+	height: 50px;
+	background-color: #ccff00;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transform: scale(0.5) rotate(0deg);
+	transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	z-index: 5;
+}
+
+.mss-accordion-item:hover .mss-accordion-icon,
+.mss-accordion-item.active .mss-accordion-icon {
+	opacity: 1;
+	transform: scale(1) rotate(0deg);
+}
+
+.mss-accordion-content {
+	position: relative;
+	z-index: 5;
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 15px;
+	transform: translateY(24px);
+	opacity: 0;
+	transition: opacity 0.3s ease var(--mss-delay, 0.2s),
+	            transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) var(--mss-delay, 0.2s);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	pointer-events: none;
+}
+
+.mss-accordion-item.active .mss-accordion-content {
+	transform: translateY(0);
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.mss-accordion-title {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: #1a1a1a;
+	line-height: 1.2;
+}
+
+.mss-accordion-desc {
+	margin: 0;
+	font-size: 14px;
+	color: #555;
+	line-height: 1.5;
+}
+
+.mss-accordion-link {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+/* Swiper Slide */
+.mss-accordion-wrapper .swiper-slide {
+	transition: flex 0.6s ease;
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+	.mss-accordion-item {
+		min-width: 140px;
+	}
+	.mss-accordion-item.active {
+		flex: 0 0 320px;
+	}
+	.mss-accordion-content {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 767px) {
+	.mss-accordion-list {
+		flex-direction: column;
+		gap: 12px;
+	}
+	.mss-accordion-item {
+		flex: none !important;
+		width: 100% !important;
+		min-width: 100% !important;
+		height: 260px !important;
+		transition: height 0.4s ease !important;
+	}
+	.mss-accordion-item.active {
+		flex: none !important;
+		width: 100% !important;
+		height: 320px !important;
+	}
+	.mss-accordion-content {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box;
+	}
+	.mss-accordion-icon {
+		display: none;
+	}
+}

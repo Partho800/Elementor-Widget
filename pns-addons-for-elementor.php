@@ -73,6 +73,15 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     $vl_ver  = file_exists( $vl_path ) ? filemtime( $vl_path ) : '1.0.0';
     wp_register_script( 'pns-video-lightbox', plugins_url( 'assets/js/pns-video-lightbox.js', __FILE__ ), array( 'jquery' ), $vl_ver, true );
 
+    // Register Accordion Slider Style & Script
+    $as_css_path = plugin_dir_path( __FILE__ ) . 'assets/css/pns-accordion-slider-style.css';
+    $as_css_ver  = file_exists( $as_css_path ) ? filemtime( $as_css_path ) : '1.0.0';
+    wp_register_style( 'pns-accordion-slider-style', plugins_url( 'assets/css/pns-accordion-slider-style.css', __FILE__ ), [], $as_css_ver );
+
+    $as_js_path = plugin_dir_path( __FILE__ ) . 'assets/js/pns-accordion-slider.js';
+    $as_js_ver  = file_exists( $as_js_path ) ? filemtime( $as_js_path ) : '1.0.0';
+    wp_register_script( 'pns-accordion-slider', plugins_url( 'assets/js/pns-accordion-slider.js', __FILE__ ), array( 'jquery', 'swiper' ), $as_js_ver, true );
+
     // Register Showcase / Blog Styles & Scripts
     wp_register_style(
         'pns-blog-fonts',
