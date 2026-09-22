@@ -65,6 +65,8 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     wp_register_style( 'custom-promo-banner-style', plugins_url( 'assets/css/pns-promo-banner-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_style( 'custom-pns-footer-style', plugins_url( 'assets/css/pns-footer-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_style( 'custom-table-widget-style', plugins_url( 'assets/css/pns-custom-table-style.css', __FILE__ ), [], '1.0.0' );
+    wp_register_style( 'pns-pricing-table-style', plugins_url( 'assets/css/pns-pricing-table-style.css', __FILE__ ), [], '1.0.0' );
+    wp_register_script( 'pns-pricing-table-script', plugins_url( 'assets/js/pns-pricing-table.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
     wp_register_style( 'pns-faq-style', plugins_url( 'assets/css/pns-faq-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_script( 'pns-faq-script', plugins_url( 'assets/js/pns-faq-script.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
 
@@ -104,6 +106,8 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     wp_enqueue_style( 'custom-promo-banner-style' );
     wp_enqueue_style( 'custom-pns-footer-style' );
     wp_enqueue_style( 'custom-table-widget-style' );
+    wp_enqueue_style( 'pns-pricing-table-style' );
+    wp_enqueue_script( 'pns-pricing-table-script' );
     wp_enqueue_style( 'pns-blog-styles' );
     wp_enqueue_script( 'pns-blog-scripts' );
 }
@@ -179,7 +183,7 @@ add_shortcode( 'modern_slider', 'pns_addons_for_elementor_slider_shortcode' );
 
 /**
  * -----------------------------------------------------------------------------
- * 4. ALL ELEMENTOR WIDGETS REGISTRATION (19 WIDGETS)
+ * 4. ALL ELEMENTOR WIDGETS REGISTRATION (20 WIDGETS)
  * -----------------------------------------------------------------------------
  */
 function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
@@ -204,7 +208,7 @@ function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
         }
     }
 
-    // B. Custom Elementor Widgets (8 Widgets)
+    // B. Custom Elementor Widgets (9 Widgets)
     $custom_widgets = [
         'pns-what-we-do-widget.php'      => 'PNS_What_We_Do_Widget',
         'pns-sticky-projects-widget.php' => 'PNS_Sticky_Projects_Widget',
@@ -213,6 +217,7 @@ function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
         'pns-promo-banner-widget.php'    => 'PNS_Promo_Banner_Widget',
         'pns-footer-widget.php'          => 'PNS_Footer_Widget',
         'pns-custom-table-widget.php'    => 'PNS_Table_Widget',
+        'pns-pricing-table-widget.php'   => 'PNS_Pricing_Table_Widget',
         'pns-faq-widget.php'             => 'PNS_FAQ_Widget',
     ];
 
