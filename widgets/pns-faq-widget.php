@@ -880,7 +880,7 @@ class PNS_FAQ_Widget extends \Elementor\Widget_Base {
 			];
 		?>
 			<script type="application/ld+json">
-				<?php echo wp_json_encode( $schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ); ?>
+				<?php echo wp_json_encode( $schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG ); ?>
 			</script>
 		<?php endif; ?>
 

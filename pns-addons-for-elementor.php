@@ -5,7 +5,7 @@
  * Version: 1.0.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
- * Tested up to: 7.1
+ * Requires Plugins: elementor
  * Author: partho018
  * Author URI: https://pnscode.com/
  * License: GPL v2 or later
@@ -43,11 +43,11 @@ if ( ! defined( 'PNS_ADDONS_FOR_ELEMENTOR_PATH' ) ) {
 function pns_addons_for_elementor_enqueue_slider_assets() {
     wp_enqueue_style( 'mss-style', plugins_url( 'assets/css/pns-slider.css', __FILE__ ), array(), '1.2.0' );
     wp_enqueue_script( 'mss-script', plugins_url( 'assets/js/slider.js', __FILE__ ), array( 'jquery' ), '1.2.0', true );
-    
-    // Enqueue Swiper assets (bundled locally to prevent CDN offloading)
-    wp_enqueue_style( 'swiper', plugins_url( 'assets/css/swiper-bundle.min.css', __FILE__ ), array(), '8.4.7' );
-    wp_enqueue_script( 'swiper', plugins_url( 'assets/js/swiper-bundle.min.js', __FILE__ ), array(), '8.4.7', true );
-    
+
+    // Swiper v11.2.8 bundled locally (no CDN, compliant with WordPress.org guidelines)
+    wp_enqueue_style( 'swiper', plugins_url( 'assets/css/swiper-bundle.min.css', __FILE__ ), array(), '11.2.8' );
+    wp_enqueue_script( 'swiper', plugins_url( 'assets/js/swiper-bundle.min.js', __FILE__ ), array(), '11.2.8', true );
+
     // Dashicons for frontend navigation
     wp_enqueue_style( 'dashicons' );
 }
@@ -65,10 +65,13 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     wp_register_style( 'custom-promo-banner-style', plugins_url( 'assets/css/pns-promo-banner-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_style( 'custom-pns-footer-style', plugins_url( 'assets/css/pns-footer-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_style( 'custom-table-widget-style', plugins_url( 'assets/css/pns-custom-table-style.css', __FILE__ ), [], '1.0.0' );
-    wp_register_style( 'pns-pricing-table-style', plugins_url( 'assets/css/pns-pricing-table-style.css', __FILE__ ), [], '1.0.0' );
-    wp_register_script( 'pns-pricing-table-script', plugins_url( 'assets/js/pns-pricing-table.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
     wp_register_style( 'pns-faq-style', plugins_url( 'assets/css/pns-faq-style.css', __FILE__ ), [], '1.0.0' );
     wp_register_script( 'pns-faq-script', plugins_url( 'assets/js/pns-faq-script.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+
+    // Register Video Lightbox Script (used by Process Steps & What We Do widgets)
+    $vl_path = plugin_dir_path( __FILE__ ) . 'assets/js/pns-video-lightbox.js';
+    $vl_ver  = file_exists( $vl_path ) ? filemtime( $vl_path ) : '1.0.0';
+    wp_register_script( 'pns-video-lightbox', plugins_url( 'assets/js/pns-video-lightbox.js', __FILE__ ), array( 'jquery' ), $vl_ver, true );
 
     // Register Showcase / Blog Styles & Scripts
     wp_register_style(
@@ -106,8 +109,6 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     wp_enqueue_style( 'custom-promo-banner-style' );
     wp_enqueue_style( 'custom-pns-footer-style' );
     wp_enqueue_style( 'custom-table-widget-style' );
-    wp_enqueue_style( 'pns-pricing-table-style' );
-    wp_enqueue_script( 'pns-pricing-table-script' );
     wp_enqueue_style( 'pns-blog-styles' );
     wp_enqueue_script( 'pns-blog-scripts' );
 }
@@ -129,45 +130,8 @@ function pns_addons_for_elementor_add_categories( $elements_manager ) {
             'icon'  => 'fa fa-plug',
         ]
     );
-
-    try {
-        $reflection = new \ReflectionClass( $elements_manager );
-        $categories_prop = null;
-        if ( $reflection->hasProperty( 'categories' ) ) {
-            $categories_prop = $reflection->getProperty( 'categories' );
-        } elseif ( $reflection->hasProperty( '_categories' ) ) {
-            $categories_prop = $reflection->getProperty( '_categories' );
-        }
-
-        if ( $categories_prop ) {
-            $categories_prop->setAccessible( true );
-            $categories = $categories_prop->getValue( $elements_manager );
-            if ( is_array( $categories ) && isset( $categories['custom-elementor-category'] ) ) {
-                $custom = [ 'custom-elementor-category' => $categories['custom-elementor-category'] ];
-                unset( $categories['custom-elementor-category'] );
-                $categories_prop->setValue( $elements_manager, array_merge( $custom, $categories ) );
-            }
-        }
-    } catch ( \Exception $e ) {
-        // Fallback gracefully
-    }
 }
-add_action( 'elementor/elements/categories_registered', 'pns_addons_for_elementor_add_categories', 999 );
-
-/**
- * Reorder Elementor Editor categories so PNS Addons is always at the very top
- */
-function pns_addons_for_elementor_reorder_categories( $settings ) {
-    if ( isset( $settings['elementor_site_categories'] ) && is_array( $settings['elementor_site_categories'] ) ) {
-        if ( isset( $settings['elementor_site_categories']['custom-elementor-category'] ) ) {
-            $custom = [ 'custom-elementor-category' => $settings['elementor_site_categories']['custom-elementor-category'] ];
-            unset( $settings['elementor_site_categories']['custom-elementor-category'] );
-            $settings['elementor_site_categories'] = array_merge( $custom, $settings['elementor_site_categories'] );
-        }
-    }
-    return $settings;
-}
-add_filter( 'elementor/editor/localize_settings', 'pns_addons_for_elementor_reorder_categories', 999 );
+add_action( 'elementor/elements/categories_registered', 'pns_addons_for_elementor_add_categories' );
 
 /**
  * -----------------------------------------------------------------------------
@@ -175,15 +139,15 @@ add_filter( 'elementor/editor/localize_settings', 'pns_addons_for_elementor_reor
  * -----------------------------------------------------------------------------
  */
 
-// Modern Slider shortcode fallback notice
+// Modern Slider shortcode fallback notice (prefixed to avoid naming collisions)
 function pns_addons_for_elementor_slider_shortcode( $atts ) {
     return '<div style="padding: 20px; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; color: #856404;">Please use the <strong>Elementor Widget</strong> "Modern Slider" to display the interactive slider.</div>';
 }
-add_shortcode( 'modern_slider', 'pns_addons_for_elementor_slider_shortcode' );
+add_shortcode( 'pns_modern_slider', 'pns_addons_for_elementor_slider_shortcode' );
 
 /**
  * -----------------------------------------------------------------------------
- * 4. ALL ELEMENTOR WIDGETS REGISTRATION (20 WIDGETS)
+ * 4. ALL ELEMENTOR WIDGETS REGISTRATION (19 WIDGETS)
  * -----------------------------------------------------------------------------
  */
 function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
@@ -208,7 +172,7 @@ function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
         }
     }
 
-    // B. Custom Elementor Widgets (9 Widgets)
+    // B. Custom Elementor Widgets (8 Widgets)
     $custom_widgets = [
         'pns-what-we-do-widget.php'      => 'PNS_What_We_Do_Widget',
         'pns-sticky-projects-widget.php' => 'PNS_Sticky_Projects_Widget',
@@ -217,7 +181,6 @@ function pns_addons_for_elementor_register_widgets( $widgets_manager ) {
         'pns-promo-banner-widget.php'    => 'PNS_Promo_Banner_Widget',
         'pns-footer-widget.php'          => 'PNS_Footer_Widget',
         'pns-custom-table-widget.php'    => 'PNS_Table_Widget',
-        'pns-pricing-table-widget.php'   => 'PNS_Pricing_Table_Widget',
         'pns-faq-widget.php'             => 'PNS_FAQ_Widget',
     ];
 

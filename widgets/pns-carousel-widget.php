@@ -465,7 +465,7 @@ class PNS_Premium_Carousel_Widget extends \Elementor\Widget_Base {
         ];
         ?>
 
-        <div class="mss-premium-carousel-wrapper" data-settings='<?php echo json_encode( $swiper_options ); ?>'>
+        <div class="mss-premium-carousel-wrapper" data-settings='<?php echo esc_attr( wp_json_encode( $swiper_options ) ); ?>'>
             <div class="swiper-container mss-pc-swiper">
                 <div class="swiper-wrapper">
                     <?php foreach ( $settings['carousel_items'] as $item ) : ?>
@@ -524,42 +524,38 @@ class PNS_Premium_Carousel_Widget extends \Elementor\Widget_Base {
             </div>
         </div>
 
-        <script>
-        (function($) {
-            var initSwiper = function() {
-                $('.mss-premium-carousel-wrapper').each(function() {
-                    var $wrapper = $(this);
-                    var $container = $wrapper.find('.mss-pc-swiper');
-                    var settings = $wrapper.data('settings');
-
-                    if (typeof Swiper !== 'undefined' && !$wrapper.hasClass('swiper-initialized')) {
-                        new Swiper($container[0], {
-                            ...settings,
-                            navigation: {
-                                nextEl: $wrapper.find('.mss-pc-next')[0],
-                                prevEl: $wrapper.find('.mss-pc-prev')[0],
-                            },
-                            pagination: {
-                                el: $wrapper.find('.mss-pc-pagination')[0],
-                                clickable: true,
-                            },
-                        });
-                        $wrapper.addClass('swiper-initialized');
-                    }
-                });
-            };
-
-            $(document).ready(function() {
-                initSwiper();
-            });
-
-            $(window).on('elementor/frontend/init', function() {
-                elementorFrontend.hooks.addAction('frontend/element_ready/mss_premium_carousel.default', function($scope) {
-                    initSwiper();
-                });
-            });
-        })(jQuery);
-        </script>
+        <?php
+        $widget_id = esc_js( $this->get_id() );
+        $inline_js = "(function($) {
+    var initSwiper = function() {
+        $('.mss-premium-carousel-wrapper').each(function() {
+            var \$wrapper = $(this);
+            var \$container = \$wrapper.find('.mss-pc-swiper');
+            var settings = \$wrapper.data('settings');
+            if (typeof Swiper !== 'undefined' && !\$wrapper.hasClass('swiper-initialized')) {
+                new Swiper(\$container[0], Object.assign({}, settings, {
+                    navigation: {
+                        nextEl: \$wrapper.find('.mss-pc-next')[0],
+                        prevEl: \$wrapper.find('.mss-pc-prev')[0],
+                    },
+                    pagination: {
+                        el: \$wrapper.find('.mss-pc-pagination')[0],
+                        clickable: true,
+                    },
+                }));
+                \$wrapper.addClass('swiper-initialized');
+            }
+        });
+    };
+    $(document).ready(function() { initSwiper(); });
+    $(window).on('elementor/frontend/init', function() {
+        elementorFrontend.hooks.addAction('frontend/element_ready/mss_premium_carousel.default', function() {
+            initSwiper();
+        });
+    });
+})(jQuery);";
+        wp_add_inline_script( 'swiper', $inline_js );
+        ?>
 
         <?php
     }

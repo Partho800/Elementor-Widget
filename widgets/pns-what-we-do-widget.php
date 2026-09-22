@@ -34,6 +34,10 @@ class PNS_What_We_Do_Widget extends Widget_Base {
 		return [ 'business', 'feature', 'card', 'what we do', 'about', 'custom' ];
 	}
 
+	public function get_script_depends() {
+		return [ 'pns-video-lightbox' ];
+	}
+
 	protected function register_controls() {
 
 		/* ==========================================================================
@@ -1651,77 +1655,9 @@ class PNS_What_We_Do_Widget extends Widget_Base {
 			</div>
 		</div>
 
-		<script>
-		jQuery(document).ready(function($) {
-			if (!window.ceVideoLightboxInitialized) {
-				window.ceVideoLightboxInitialized = true;
-				
-				// Attach click listener for video triggers
-				$(document).on('click', '.ce-process-video-trigger', function(e) {
-					e.preventDefault();
-					const $trigger = $(this);
-					const videoSource = $trigger.attr('data-video-source');
-					const videoUrl = $trigger.attr('data-video-url');
-
-					if (!videoUrl) return;
-
-					const $lightbox = $('.ce-video-lightbox');
-					const $container = $lightbox.find('.ce-video-lightbox-container');
-					$container.empty();
-
-					if (videoSource === 'external') {
-						let embedUrl = '';
-						if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') || videoUrl.includes('youtube-nocookie.com')) {
-							let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\/shorts\/)([^#\&\?]*).*/;
-							let match = videoUrl.match(regExp);
-							if (match && match[2].length === 11) {
-								embedUrl = 'https://www.youtube.com/embed/' + match[2] + '?autoplay=1&rel=0';
-							}
-						} else if (videoUrl.includes('vimeo.com')) {
-							let regExp = /vimeo\.com\/(?:video\/)?([0-9]+)/;
-							let match = videoUrl.match(regExp);
-							if (match) {
-								embedUrl = 'https://player.vimeo.com/video/' + match[1] + '?autoplay=1';
-							}
-						}
-
-						if (embedUrl) {
-							$container.html(`<iframe src="${embedUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`);
-						} else if (videoUrl.match(/\.(mp4|webm|ogg|ogv)($|\?)/i)) {
-							$container.html(`<video src="${videoUrl}" controls autoplay style="width:100%; height:100%; object-fit:contain;"></video>`);
-						} else {
-							$container.html(`<iframe src="${videoUrl}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`);
-						}
-					} else if (videoSource === 'self_hosted') {
-						$container.html(`<video src="${videoUrl}" controls autoplay style="width:100%; height:100%; object-fit:contain;"></video>`);
-					}
-
-					$lightbox.addClass('ce-active');
-					$('body').css('overflow', 'hidden');
-				});
-
-				// Close lightbox listeners
-				$(document).on('click', '.ce-video-lightbox-close, .ce-video-lightbox-overlay', function() {
-					const $lightbox = $('.ce-video-lightbox');
-					$lightbox.removeClass('ce-active');
-					$lightbox.find('.ce-video-lightbox-container').empty();
-					$('body').css('overflow', '');
-				});
-
-				// Close on ESC keypress
-				$(document).on('keydown', function(e) {
-					if (e.key === 'Escape') {
-						const $lightbox = $('.ce-video-lightbox');
-						if ($lightbox.hasClass('ce-active')) {
-							$lightbox.removeClass('ce-active');
-							$lightbox.find('.ce-video-lightbox-container').empty();
-							$('body').css('overflow', '');
-						}
-					}
-				});
-			}
-		});
-		</script>
+		<?php
+		// Video lightbox JS is enqueued via get_script_depends() -> 'pns-video-lightbox'
+		?>
 
 		<?php
 	}

@@ -100,22 +100,22 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 					[
 						'card_title' => esc_html__( 'Email Marketing', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Boost Engagement and Drive Conversions with Targeted Emails.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&q=80&w=800' ],
+						'card_image' => [ 'url' => '' ],
 					],
 					[
 						'card_title' => esc_html__( 'Social Media', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Connect with your audience on all major platforms.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800' ],
+						'card_image' => [ 'url' => '' ],
 					],
 					[
 						'card_title' => esc_html__( 'SEO Optimization', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Rank higher on search engines and get more traffic.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => 'https://images.unsplash.com/photo-1571721738205-e827cbd13ce9?auto=format&fit=crop&q=80&w=800' ],
+						'card_image' => [ 'url' => '' ],
 					],
 					[
 						'card_title' => esc_html__( 'Web Design', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Create stunning websites that convert visitors.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => 'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=800' ],
+						'card_image' => [ 'url' => '' ],
 					],
 				],
 				'title_field' => '{{{ card_title }}}',
@@ -574,235 +574,87 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 			<?php endif; ?>
 		</div>
 
-		<style>
-			.mss-accordion-wrapper {
-				width: 100%;
-				overflow: hidden;
-				padding: 20px 0;
+		<?php
+		// Inline style via wp_add_inline_style (WordPress.org compliant)
+		$accordion_css = '
+			.mss-accordion-wrapper{width:100%;overflow:hidden;padding:20px 0}
+			.mss-accordion-list{display:flex;width:100%;list-style:none;padding:0;margin:0}
+			.mss-accordion-item{position:relative;flex:1;min-width:244px;background-size:cover;background-position:center;transition:flex var(--mss-speed,.5s) cubic-bezier(.4,0,.2,1),min-width var(--mss-speed,.5s) cubic-bezier(.4,0,.2,1);cursor:pointer;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:25px;will-change:flex}
+			.mss-accordion-item.active{flex:0 0 420px}
+			.mss-accordion-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(0,0,0,.6) 100%);opacity:.5;transition:opacity .3s;z-index:1}
+			.mss-accordion-icon{position:absolute;top:25px;right:25px;width:50px;height:50px;background-color:#ccff00;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.5) rotate(0deg);transition:all .4s cubic-bezier(.175,.885,.32,1.275);z-index:5}
+			.mss-accordion-item:hover .mss-accordion-icon{opacity:1;transform:scale(1) rotate(0deg)}
+			.mss-accordion-content{position:relative;z-index:5;background:#fff;border-radius:12px;transform:translateY(24px);opacity:0;transition:opacity .3s ease var(--mss-delay,.2s),transform .4s cubic-bezier(.25,1,.5,1) var(--mss-delay,.2s);box-shadow:0 10px 30px rgba(0,0,0,.1);display:flex;flex-direction:column;gap:5px;pointer-events:none}
+			.mss-accordion-item.active .mss-accordion-content{transform:translateY(0);opacity:1;pointer-events:auto}
+			.mss-accordion-title{margin:0;font-size:22px;font-weight:700;color:#1a1a1a;line-height:1.2}
+			.mss-accordion-desc{margin:0;font-size:15px;color:#555;line-height:1.5}
+			.mss-accordion-link{position:absolute;top:0;left:0;width:100%;height:100%;z-index:10}
+			.swiper-slide{transition:flex .6s ease}
+			@media(max-width:767px){
+				.mss-accordion-list{flex-direction:column;gap:12px}
+				.mss-accordion-item{flex:none !important;width:100% !important;min-width:100% !important;height:260px !important;transition:height .4s ease !important}
+				.mss-accordion-item.active{flex:none !important;width:100% !important;height:320px !important}
+				.mss-accordion-content{width:100% !important;max-width:100% !important;box-sizing:border-box}
+				.mss-accordion-icon{display:none}
 			}
-			.mss-accordion-list {
-				display: flex;
-				width: 100%;
-				list-style: none;
-				padding: 0;
-				margin: 0;
+			@media(min-width:768px) and (max-width:1024px){
+				.mss-accordion-item{min-width:140px}
+				.mss-accordion-item.active{flex:0 0 320px}
+				.mss-accordion-content{width:280px !important}
 			}
-			.mss-accordion-item {
-				position: relative;
-				flex: 1;
-				min-width: 244px;
-				background-size: cover;
-				background-position: center;
-				transition: flex var(--mss-speed, 0.5s) cubic-bezier(0.4, 0, 0.2, 1), min-width var(--mss-speed, 0.5s) cubic-bezier(0.4, 0, 0.2, 1);
-				cursor: pointer;
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				padding: 25px;
-				will-change: flex;
-			}
-			.mss-accordion-item.active {
-				flex: 0 0 420px;
-			}
-			
-			.mss-accordion-overlay {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
-				opacity: 0.5;
-				transition: opacity 0.3s;
-				z-index: 1;
-			}
-			
-			.mss-accordion-icon {
-				position: absolute;
-				top: 25px;
-				right: 25px;
-				width: 50px;
-				height: 50px;
-				background-color: #ccff00;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				opacity: 0;
-				transform: scale(0.5) rotate(0deg);
-				transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-				z-index: 5;
-			}
-			
-			.mss-accordion-item:hover .mss-accordion-icon {
-				opacity: 1;
-				transform: scale(1) rotate(0deg);
-			}
+		';
+		wp_add_inline_style( 'custom-elementor-widgets-style', $accordion_css );
 
-			.mss-accordion-content {
-				position: relative;
-				z-index: 5;
-				background: #ffffff;
-				border-radius: 12px;
-				transform: translateY(24px);
-				opacity: 0;
-				transition: opacity 0.3s ease var(--mss-delay, 0.2s), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) var(--mss-delay, 0.2s);
-				box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-				display: flex;
-				flex-direction: column;
-				gap: 5px;
-				pointer-events: none;
-			}
-
-			.mss-accordion-item.active .mss-accordion-content {
-				transform: translateY(0);
-				opacity: 1;
-				pointer-events: auto;
-			}
-
-			.mss-accordion-title {
-				margin: 0;
-				font-size: 22px;
-				font-weight: 700;
-				color: #1a1a1a;
-				line-height: 1.2;
-			}
-
-			.mss-accordion-desc {
-				margin: 0;
-				font-size: 15px;
-				color: #555;
-				line-height: 1.5;
-			}
-
-			.mss-accordion-link {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: 10;
-			}
-
-			/* Hover expansion logic */
-			.mss-accordion-list:hover .mss-accordion-item {
-				/* flex: 1; */
-			}
-			.mss-accordion-list .mss-accordion-item:hover {
-				/* flex: 3.5; */
-			}
-
-			/* Swiper compatibility */
-			.swiper-slide {
-				transition: flex 0.6s ease;
-			}
-
-			/* ---- Mobile Responsive ---- */
-			@media (max-width: 767px) {
-				.mss-accordion-list {
-					flex-direction: column;
-					gap: 12px;
-				}
-				.mss-accordion-item {
-					flex: none !important;
-					width: 100% !important;
-					min-width: 100% !important;
-					height: 260px !important;
-					transition: height 0.4s ease !important;
-				}
-				.mss-accordion-item.active {
-					flex: none !important;
-					width: 100% !important;
-					height: 320px !important;
-				}
-				.mss-accordion-content {
-					width: 100% !important;
-					max-width: 100% !important;
-					box-sizing: border-box;
-				}
-				.mss-accordion-icon {
-					display: none;
-				}
-			}
-
-			@media (min-width: 768px) and (max-width: 1024px) {
-				.mss-accordion-item {
-					min-width: 140px;
-				}
-				.mss-accordion-item.active {
-					flex: 0 0 320px;
-				}
-				.mss-accordion-content {
-					width: 280px !important;
-				}
-			}
-		</style>
-
-		<script>
-		jQuery(document).ready(function($) {
-			function initAccordion($wrapper) {
-				const $items = $wrapper.find('.mss-accordion-item');
-				let hoverTimer = null;
-				let leaveTimer = null;
-				
-				$items.on('mouseenter', function() {
-					if ($wrapper.hasClass('mss-accordion-carousel')) return;
+		// Inline script via wp_add_inline_script (WordPress.org compliant)
+		$items_to_show = (int) $settings['items_to_show'];
+		$inline_js = "jQuery(document).ready(function($) {
+			function initAccordion(\$wrapper) {
+				var \$items = \$wrapper.find('.mss-accordion-item');
+				var hoverTimer = null;
+				var leaveTimer = null;
+				\$items.on('mouseenter', function() {
+					if (\$wrapper.hasClass('mss-accordion-carousel')) return;
 					clearTimeout(hoverTimer);
 					clearTimeout(leaveTimer);
-					const $hovered = $(this);
+					var \$hovered = $(this);
 					hoverTimer = setTimeout(function() {
-						$items.removeClass('active');
-						$hovered.addClass('active');
-					}, 60); // small debounce so rapid mouse move doesn't flicker
+						\$items.removeClass('active');
+						\$hovered.addClass('active');
+					}, 60);
 				});
-
-				$wrapper.on('mouseleave', function() {
-					if ($wrapper.hasClass('mss-accordion-carousel')) return;
+				\$wrapper.on('mouseleave', function() {
+					if (\$wrapper.hasClass('mss-accordion-carousel')) return;
 					clearTimeout(hoverTimer);
 					leaveTimer = setTimeout(function() {
-						$items.removeClass('active');
-						$items.first().addClass('active');
+						\$items.removeClass('active');
+						\$items.first().addClass('active');
 					}, 80);
 				});
 			}
-
 			$('.mss-accordion-wrapper').each(function() {
-				const $this = $(this);
-				initAccordion($this);
-
-				if ($this.hasClass('mss-accordion-carousel')) {
-					const settings = {
-						slidesPerView: <?php echo esc_js( $settings['items_to_show'] ); ?>,
+				var \$this = $(this);
+				initAccordion(\$this);
+				if (\$this.hasClass('mss-accordion-carousel')) {
+					var settings = {
+						slidesPerView: {$items_to_show},
 						spaceBetween: 20,
 						loop: true,
-						pagination: {
-							el: '.swiper-pagination',
-							clickable: true,
-						},
-						navigation: {
-							nextEl: '.swiper-button-next',
-							prevEl: '.swiper-button-prev',
-						},
+						pagination: { el: '.swiper-pagination', clickable: true },
+						navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
 						breakpoints: {
 							320: { slidesPerView: 1 },
 							768: { slidesPerView: 2 },
-							1024: { slidesPerView: <?php echo esc_js( $settings['items_to_show'] ); ?> }
+							1024: { slidesPerView: {$items_to_show} }
 						}
 					};
-
 					if (typeof Swiper !== 'undefined') {
-						new Swiper($this[0], settings);
-					} else if (window.elementorFrontend && window.elementorFrontend.utils && window.elementorFrontend.utils.swiper) {
-						// Use Elementor's Swiper if available
-						new window.elementorFrontend.utils.swiper($this[0], settings).then(function(newSwiperInstance) {
-							// Swiper instance created
-						});
+						new Swiper(\$this[0], settings);
 					}
 				}
 			});
-		});
-		</script>
+		});"; 
+		wp_add_inline_script( 'swiper', $inline_js );
+		?>
 		<?php
 	}
 }

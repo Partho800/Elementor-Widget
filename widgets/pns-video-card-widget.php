@@ -387,44 +387,33 @@ class PNS_Video_Card_Widget extends \Elementor\Widget_Base {
 			</div>
 		</div>
 
-		<script>
-		jQuery(document).ready(function($) {
-			var widgetId = '<?php echo esc_js( $this->get_id() ); ?>';
-			var btn = $('.elementor-element-' + widgetId + ' .mss-vc-play-btn');
-			var modal = $('#mss-video-modal-' + widgetId);
-			
-			// Move modal to body to avoid parent container clipping (overflow:hidden issues)
-			if (modal.length) {
-				$('body').append(modal);
-			}
-
-			var iframe = $('#mss-iframe-' + widgetId);
+		<?php
+		$widget_id = esc_js( $this->get_id() );
+		$vc_js = "jQuery(document).ready(function($) {
+			var widgetId = '{$widget_id}';
+			var btn = \$('.elementor-element-' + widgetId + ' .mss-vc-play-btn');
+			var modal = \$('#mss-video-modal-' + widgetId);
+			if (modal.length) { \$('body').append(modal); }
+			var iframe = \$('#mss-iframe-' + widgetId);
 			var close = modal.find('.mss-video-close');
-
 			btn.on('click', function(e) {
 				e.preventDefault();
-				var videoId = $(this).attr('data-video-id');
+				var videoId = \$(this).attr('data-video-id');
 				if (videoId) {
 					iframe.attr('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&showinfo=0');
 					modal.fadeIn(300);
-					$('body').css('overflow', 'hidden'); // Prevent scroll
+					\$('body').css('overflow', 'hidden');
 				}
 			});
-
 			close.on('click', function() {
-				modal.fadeOut(300, function() {
-					iframe.attr('src', '');
-					$('body').css('overflow', 'auto');
-				});
+				modal.fadeOut(300, function() { iframe.attr('src', ''); \$('body').css('overflow', 'auto'); });
 			});
-
 			modal.on('click', function(e) {
-				if ($(e.target).hasClass('mss-video-modal')) {
-					close.trigger('click');
-				}
+				if (\$(e.target).hasClass('mss-video-modal')) { close.trigger('click'); }
 			});
-		});
-		</script>
+		});";
+		wp_add_inline_script( 'jquery', $vc_js );
+		?>
 		<?php
 	}
 }

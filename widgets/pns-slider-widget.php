@@ -112,17 +112,17 @@ class PNS_Slider_Widget extends \Elementor\Widget_Base {
 					[
 						'slide_title' => esc_html__( 'Komodo', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&q=80&w=1200' ],
+						'slide_image' => [ 'url' => '' ],
 					],
 					[
 						'slide_title' => esc_html__( 'Kerala', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'Beautiful nature and serene backwaters of India.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&q=80&w=1200' ],
+						'slide_image' => [ 'url' => '' ],
 					],
 					[
 						'slide_title' => esc_html__( 'Switzerland', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'The majestic mountains of Matterhorn.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => 'https://images.unsplash.com/photo-1531310197839-ccf54634509e?auto=format&fit=crop&q=80&w=1200' ],
+						'slide_image' => [ 'url' => '' ],
 					],
 				],
 				'title_field' => '{{{ slide_title }}}',
