@@ -1,0 +1,210 @@
+/* ==========================================================================
+   PNS FAQ Widget Styles
+   ========================================================================== */
+
+.pns-faq-container {
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Search Bar */
+.pns-faq-search-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.pns-faq-search-input {
+    width: 100%;
+    padding: 14px 20px 14px 45px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #222222;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.pns-faq-search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.pns-faq-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pns-faq-search-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* FAQ List & Items */
+.pns-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pns-faq-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pns-faq-item.pns-faq-active {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Question Header */
+.pns-faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    transition: background-color 0.3s ease;
+    margin: 0;
+}
+
+.pns-faq-question:hover {
+    background-color: #f8fafc;
+}
+
+.pns-faq-active .pns-faq-question {
+    background-color: #f8fafc;
+}
+
+.pns-faq-question-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+}
+
+/* Number / Badge */
+.pns-faq-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3b82f6;
+    background: #eff6ff;
+    border-radius: 6px;
+    padding: 4px 10px;
+    min-width: 28px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.pns-faq-active .pns-faq-number {
+    color: #ffffff;
+    background: #3b82f6;
+}
+
+/* Question Title */
+.pns-faq-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.pns-faq-active .pns-faq-title {
+    color: #1e40af;
+}
+
+/* Icons */
+.pns-faq-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 16px;
+    flex-shrink: 0;
+    color: #64748b;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.pns-faq-icon-wrapper svg,
+.pns-faq-icon-wrapper i {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    display: block;
+}
+
+.pns-faq-active .pns-faq-icon-wrapper {
+    color: #3b82f6;
+    transform: rotate(180deg);
+}
+
+/* Icon on left */
+.pns-faq-icon-left .pns-faq-question {
+    flex-direction: row-reverse;
+}
+
+.pns-faq-icon-left .pns-faq-icon-wrapper {
+    margin-left: 0;
+    margin-right: 14px;
+}
+
+/* Answer Content */
+.pns-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.pns-faq-active .pns-faq-answer {
+    max-height: 1200px;
+    opacity: 1;
+}
+
+.pns-faq-answer-inner {
+    padding: 16px 24px 22px;
+    color: #475569;
+    font-size: 15px;
+    line-height: 1.7;
+    border-top: 1px solid #f1f5f9;
+}
+
+.pns-faq-answer-inner p:last-child {
+    margin-bottom: 0;
+}
+
+/* Hidden state for search filter */
+.pns-faq-item.pns-faq-hidden {
+    display: none !important;
+}
+
+.pns-faq-no-results {
+    display: none;
+    text-align: center;
+    padding: 30px 20px;
+    color: #94a3b8;
+    font-size: 15px;
+}
