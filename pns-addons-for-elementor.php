@@ -82,6 +82,11 @@ function pns_addons_for_elementor_enqueue_custom_widget_styles() {
     $as_js_ver  = file_exists( $as_js_path ) ? filemtime( $as_js_path ) : '1.0.0';
     wp_register_script( 'pns-accordion-slider', plugins_url( 'assets/js/pns-accordion-slider.js', __FILE__ ), array( 'jquery', 'swiper' ), $as_js_ver, true );
 
+    // Register Member Carousel Script
+    $mc_js_path = plugin_dir_path( __FILE__ ) . 'assets/js/pns-member-carousel.js';
+    $mc_js_ver  = file_exists( $mc_js_path ) ? filemtime( $mc_js_path ) : '1.0.0';
+    wp_register_script( 'pns-member-carousel', plugins_url( 'assets/js/pns-member-carousel.js', __FILE__ ), array( 'jquery', 'swiper' ), $mc_js_ver, true );
+
     // Register Showcase / Blog Styles & Scripts
     wp_register_style(
         'pns-blog-fonts',
