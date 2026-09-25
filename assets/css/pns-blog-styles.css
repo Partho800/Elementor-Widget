@@ -160,8 +160,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 2.5rem 2rem;
+    padding: 0;
     background: transparent;
     border: 1px solid rgba(18, 33, 26, 0.08);
     border-radius: 24px;
@@ -171,6 +170,86 @@
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden;
     text-align: left;
+}
+
+.blogs-page .wwd-card-inner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1.5rem;
+    padding: 2.5rem 2rem;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.blogs-page .wwd-card.wwd-has-image {
+    padding: 0 !important;
+}
+
+.blogs-page .wwd-card.wwd-has-image .wwd-card-inner {
+    padding: 1.75rem 2rem 2rem 2rem;
+}
+
+/* Card Banner Image */
+.blogs-page .wwd-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin: 0;
+    flex-shrink: 0;
+    z-index: 1;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.blogs-page .wwd-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.blogs-page .wwd-card:hover .wwd-card-img {
+    transform: scale(1.06);
+}
+
+.blogs-page .wwd-image-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+.blogs-page .wwd-image-wrap .wwd-image-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.88);
+    color: var(--text-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-family: var(--font-headings);
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.blogs-page .wwd-card:hover .wwd-image-wrap .wwd-image-number {
+    background: var(--ac);
+    color: #ffffff;
+    transform: scale(1.08);
 }
 
 .blogs-page .wwd-card-glow {
@@ -184,8 +263,7 @@
 }
 
 .blogs-page .wwd-card:hover {
-    transform: none !important;
-    border-color: var(--ac) !important;
+    border-color: var(--ac);
     box-shadow: 0 15px 30px rgba(6, 46, 36, 0.05), 0 0 0 1px var(--ac);
 }
 
@@ -210,6 +288,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--pns-item-icon-bg, rgba(59, 184, 82, 0.12));
+    color: var(--pns-item-icon-color, #3BB852);
 }
 
 .blogs-page .wwd-icon i {
@@ -222,8 +302,8 @@
 }
 
 .blogs-page .wwd-card:hover .wwd-icon {
-    background: var(--ac) !important;
-    color: #ffffff !important;
+    background: var(--ac);
+    color: #ffffff;
     transform: scale(1.05);
     box-shadow: 0 10px 20px -5px var(--ac);
 }
@@ -307,6 +387,10 @@
     height: 2px;
     background: var(--ac);
     transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blogs-page .wwd-explore.pns-no-underline::after {
+    display: none !important;
 }
 
 .blogs-page .wwd-card:hover .wwd-explore::after {
