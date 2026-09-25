@@ -27,7 +27,7 @@ class PNS_Process_Steps_Widget extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_keywords() {
@@ -35,7 +35,7 @@ class PNS_Process_Steps_Widget extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'custom-process-widget-style' ];
+		return [ 'pns-process-widget-style' ];
 	}
 
 	public function get_script_depends() {
@@ -1063,7 +1063,7 @@ class PNS_Process_Steps_Widget extends Widget_Base {
 									<?php endif; ?>
 								</svg>
 								<?php if ( $show_arrow ) : ?>
-									<div class="ce-process-arrow <?php echo $is_left_to_right ? 'ce-arrow-right' : 'ce-arrow-left'; ?>">
+									<div class="ce-process-arrow <?php echo esc_attr( $is_left_to_right ? 'ce-arrow-right' : 'ce-arrow-left' ); ?>">
 										<svg viewBox="0 0 10 10">
 											<polygon class="ce-process-arrow-head" points="2,1 8,5 2,9" />
 										</svg>

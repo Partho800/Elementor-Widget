@@ -27,11 +27,15 @@ class PNS_Sticky_Projects_Widget extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_keywords() {
 		return [ 'sticky', 'stacking', 'project', 'projects', 'sticky project', 'sticky projects', 'cards', 'scroll', 'custom' ];
+	}
+
+	public function get_style_depends() {
+		return [ 'pns-sticky-widget-style' ];
 	}
 
 	protected function register_controls() {

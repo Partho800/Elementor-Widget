@@ -22,7 +22,7 @@ class PNS_Title_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_style_depends() {

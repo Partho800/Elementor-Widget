@@ -1,0 +1,85 @@
+/**
+ * PNS Addons for Elementor - Sticky Extension Styles
+ */
+
+/* Base Sticky Element */
+.pns-sticky-element {
+	box-sizing: border-box;
+}
+
+/* Spacer to prevent page jumping when element becomes fixed */
+.pns-sticky-spacer {
+	display: none;
+	box-sizing: border-box;
+	pointer-events: none;
+	visibility: hidden;
+	padding: 0;
+	border: none;
+	background: transparent !important;
+}
+
+/* Fixed State */
+.pns-sticky-element.pns-sticky-fixed {
+	position: fixed !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	box-sizing: border-box !important;
+	will-change: transform, top, bottom;
+}
+
+/* Mobile specific sticky fixes */
+@media (max-width: 767px) {
+	.pns-sticky-element.pns-sticky-fixed {
+		left: 0 !important;
+		right: 0 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		margin-top: 0 !important;
+	}
+}
+
+/* Scroll Up Only - Hidden state when scrolling down */
+.pns-sticky-element.pns-sticky-fixed.pns-sticky--hidden {
+	transform: translateY(-130%) !important;
+	transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Scroll Up Only - Revealed state when scrolling up */
+.pns-sticky-element.pns-sticky-fixed.pns-sticky--revealed {
+	transform: translateY(0) !important;
+	transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Active sticky state styles */
+.pns-sticky-element.pns-sticky-active {
+	/* Can be styled via Elementor controls */
+}
+
+/* -------------------------------------------------------------
+ * Elementor Editor Panel UI Enhancements
+ * ------------------------------------------------------------- */
+.elementor-control-pns_section_sticky .elementor-panel-heading-title {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-weight: 600;
+}
+
+.elementor-control-pns_section_sticky .elementor-panel-heading-title::after {
+	content: 'PNS';
+	display: inline-block;
+	background: linear-gradient(135deg, #6366f1, #8b5cf6);
+	color: #ffffff;
+	font-size: 9px;
+	font-weight: 700;
+	line-height: 1;
+	padding: 3px 6px;
+	border-radius: 4px;
+	letter-spacing: 0.5px;
+	margin-left: 6px;
+	vertical-align: middle;
+	box-shadow: 0 1px 3px rgba(99, 102, 241, 0.3);
+}

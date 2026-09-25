@@ -18,7 +18,15 @@ class PNS_Video_Card_Widget extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
+	}
+
+	public function get_style_depends() {
+		return [ 'pns-slider-style' ];
+	}
+
+	public function get_script_depends() {
+		return [ 'pns-video-card' ];
 	}
 
 	protected function register_controls() {
@@ -362,7 +370,7 @@ class PNS_Video_Card_Widget extends \Elementor\Widget_Base {
 			<div class="mss-vc-content">
 				<?php if ( ! empty( $settings['logo_img']['url'] ) ) : ?>
 					<div class="mss-vc-logo">
-						<img src="<?php echo esc_url( $settings['logo_img']['url'] ); ?>" alt="Logo">
+						<img src="<?php echo esc_url( $settings['logo_img']['url'] ); ?>" alt="<?php echo esc_attr__( 'Logo', 'pns-addons-for-elementor' ); ?>">
 					</div>
 				<?php endif; ?>
 
@@ -386,34 +394,6 @@ class PNS_Video_Card_Widget extends \Elementor\Widget_Base {
 				</div>
 			</div>
 		</div>
-
-		<?php
-		$widget_id = esc_js( $this->get_id() );
-		$vc_js = "jQuery(document).ready(function($) {
-			var widgetId = '{$widget_id}';
-			var btn = \$('.elementor-element-' + widgetId + ' .mss-vc-play-btn');
-			var modal = \$('#mss-video-modal-' + widgetId);
-			if (modal.length) { \$('body').append(modal); }
-			var iframe = \$('#mss-iframe-' + widgetId);
-			var close = modal.find('.mss-video-close');
-			btn.on('click', function(e) {
-				e.preventDefault();
-				var videoId = \$(this).attr('data-video-id');
-				if (videoId) {
-					iframe.attr('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&showinfo=0');
-					modal.fadeIn(300);
-					\$('body').css('overflow', 'hidden');
-				}
-			});
-			close.on('click', function() {
-				modal.fadeOut(300, function() { iframe.attr('src', ''); \$('body').css('overflow', 'auto'); });
-			});
-			modal.on('click', function(e) {
-				if (\$(e.target).hasClass('mss-video-modal')) { close.trigger('click'); }
-			});
-		});";
-		wp_add_inline_script( 'jquery', $vc_js );
-		?>
 		<?php
 	}
 }

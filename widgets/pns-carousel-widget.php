@@ -6,7 +6,7 @@ class PNS_Premium_Carousel_Widget extends \Elementor\Widget_Base {
     public function get_name() { return 'mss_premium_carousel'; }
     public function get_title() { return __( 'Member', 'pns-addons-for-elementor' ); }
     public function get_icon() { return 'eicon-person'; }
-    public function get_categories() { return [ 'custom-elementor-category' ]; }
+    public function get_categories() { return [ 'pns-addons-category' ]; }
 
     public function get_keywords() {
         return [ 'member', 'team member', 'team', 'carousel', 'cards', 'staff', 'person', 'profile' ];
@@ -17,7 +17,7 @@ class PNS_Premium_Carousel_Widget extends \Elementor\Widget_Base {
     }
 
     public function get_style_depends() {
-        return [ 'mss-style', 'swiper' ];
+        return [ 'pns-slider-style', 'swiper' ];
     }
 
     protected function register_controls() {

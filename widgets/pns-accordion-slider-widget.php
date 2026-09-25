@@ -33,7 +33,7 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_style_depends() {
@@ -105,22 +105,22 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 					[
 						'card_title' => esc_html__( 'Email Marketing', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Boost Engagement and Drive Conversions with Targeted Emails.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => '' ],
+						'card_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 					[
 						'card_title' => esc_html__( 'Social Media', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Connect with your audience on all major platforms.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => '' ],
+						'card_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 					[
 						'card_title' => esc_html__( 'SEO Optimization', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Rank higher on search engines and get more traffic.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => '' ],
+						'card_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 					[
 						'card_title' => esc_html__( 'Web Design', 'pns-addons-for-elementor' ),
 						'card_description' => esc_html__( 'Create stunning websites that convert visitors.', 'pns-addons-for-elementor' ),
-						'card_image' => [ 'url' => '' ],
+						'card_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 				],
 				'title_field' => '{{{ card_title }}}',
@@ -553,8 +553,9 @@ class PNS_Accordion_Slider_Widget extends \Elementor\Widget_Base {
 					}
 					$active_class = ( $index === 0 ) ? 'active' : '';
 					$items_count++;
+					$card_img = ! empty( $card['card_image']['url'] ) ? $card['card_image']['url'] : \Elementor\Utils::get_placeholder_image_src();
 					?>
-					<div class="mss-accordion-item <?php echo esc_attr( $active_class ); ?> <?php $this->print_render_attribute_string( 'item' ); ?>" style="background-image: url('<?php echo esc_url( $card['card_image']['url'] ); ?>');">
+					<div class="mss-accordion-item <?php echo esc_attr( $active_class ); ?> <?php $this->print_render_attribute_string( 'item' ); ?>" style="background-image: url('<?php echo esc_url( $card_img ); ?>');">
 						<div class="mss-accordion-overlay"></div>
 						
 						<?php if ( ! empty( $settings['icon']['value'] ) ) : ?>

@@ -26,7 +26,7 @@ class PNS_Table_Widget extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_keywords() {
@@ -34,7 +34,7 @@ class PNS_Table_Widget extends Widget_Base {
 	}
 
 	public function get_style_depends() {
-		return [ 'custom-table-widget-style' ];
+		return [ 'pns-custom-table-style' ];
 	}
 
 	protected function register_controls() {
@@ -879,14 +879,14 @@ class PNS_Table_Widget extends Widget_Base {
 			<!-- Table Title / Top Header -->
 			<?php if ( 'yes' === $settings['show_header'] && ! empty( $settings['header_text'] ) ) : ?>
 				<div class="ce-table-title-wrap">
-					<<?php echo esc_attr( $settings['header_tag'] ); ?> class="ce-table-title">
+					<<?php echo tag_escape( $settings['header_tag'] ); ?> class="ce-table-title">
 						<?php echo esc_html( $settings['header_text'] ); ?>
-					</<?php echo esc_attr( $settings['header_tag'] ); ?>>
+					</<?php echo tag_escape( $settings['header_tag'] ); ?>>
 				</div>
 			<?php endif; ?>
 
 			<!-- Scrollable Container -->
-			<div class="ce-table-scrollable-inner <?php echo $scroll_enabled ? 'ce-table-scroll-active' : ''; ?>">
+			<div class="ce-table-scrollable-inner <?php echo esc_attr( $scroll_enabled ? 'ce-table-scroll-active' : '' ); ?>">
 				<table class="ce-custom-table">
 					<thead>
 						<tr>

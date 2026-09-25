@@ -24,11 +24,11 @@ class PNS_Promo_Banner_Widget extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_style_depends() {
-		return [ 'custom-promo-banner-style' ];
+		return [ 'pns-promo-banner-style' ];
 	}
 
 	protected function register_controls() {

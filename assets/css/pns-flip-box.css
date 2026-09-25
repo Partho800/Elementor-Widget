@@ -1,0 +1,357 @@
+/**
+ * PNS Addons for Elementor - 3D Flip Box Stylesheet
+ * Version: 1.0.0
+ * Author: PNS Addons
+ */
+
+.pns-flip-box-wrapper {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pns-flip-box-wrapper *,
+.pns-flip-box-wrapper *::before,
+.pns-flip-box-wrapper *::after {
+    box-sizing: border-box;
+}
+
+/* 3D Perspective Box */
+.pns-flip-box {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+    cursor: pointer;
+    --pns-fb-align: center;
+    --pns-fb-text-align: center;
+}
+
+/* Inner 3D Container */
+.pns-flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.2, 0.85, 0.4, 1.2);
+    border-radius: 16px;
+}
+
+/* Front & Back Faces */
+.pns-flip-box-front,
+.pns-flip-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 35px 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Front Face */
+.pns-flip-box-front {
+    z-index: 2;
+    transform: rotateX(0deg) rotateY(0deg);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    align-items: var(--pns-fb-front-align, var(--pns-fb-align, center));
+    text-align: var(--pns-fb-front-text, var(--pns-fb-text-align, center));
+}
+
+/* Back Face */
+.pns-flip-box-back {
+    z-index: 1;
+    background: #0f172a;
+    color: #ffffff;
+    border: 1px solid #1e293b;
+    align-items: var(--pns-fb-back-align, var(--pns-fb-align, center));
+    text-align: var(--pns-fb-back-text, var(--pns-fb-text-align, center));
+}
+
+/* Background Overlay */
+.pns-flip-box-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pns-flip-box-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    text-align: inherit;
+}
+
+/* Graphic Element (Icon / Image) */
+.pns-flip-box-graphic {
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+
+.pns-flip-box-front .pns-flip-box-graphic {
+    align-self: var(--pns-fb-front-align, var(--pns-fb-align, center));
+}
+
+.pns-flip-box-back .pns-flip-box-graphic {
+    align-self: var(--pns-fb-back-align, var(--pns-fb-align, center));
+}
+
+.pns-flip-box-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: #0077b6;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(0, 119, 182, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pns-flip-box-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+}
+
+.pns-flip-box-image {
+    max-width: 100px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Typography */
+.pns-flip-box-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 6px 0;
+    color: #64748b;
+    width: 100%;
+    text-align: inherit;
+}
+
+.pns-flip-box-back .pns-flip-box-subtitle {
+    color: #94a3b8;
+}
+
+.pns-flip-box-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+    color: #0f172a;
+    width: 100%;
+    text-align: inherit;
+}
+
+.pns-flip-box-back .pns-flip-box-title {
+    color: #ffffff;
+}
+
+.pns-flip-box-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    color: #475569;
+    width: 100%;
+    text-align: inherit;
+}
+
+.pns-flip-box-back .pns-flip-box-desc {
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+/* Badge (Top Corner Ribbon or Pill) */
+.pns-flip-box-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+/* Action Button */
+.pns-flip-box-btn-wrap {
+    margin-top: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: var(--pns-fb-back-align, var(--pns-fb-align, center));
+}
+
+.pns-flip-box-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    background: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.2, 0.85, 0.4, 1.2);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+}
+
+.pns-flip-box-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    color: #0077b6;
+}
+
+.pns-flip-box-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.pns-flip-box-btn:hover svg {
+    transform: translateX(3px);
+}
+
+/* ==========================================================================
+   FLIP DIRECTIONS & 3D ANIMATIONS
+   ========================================================================== */
+
+/* 1. Flip Left (rotateY: 0 -> -180) */
+.pns-flip-direction-flip-left .pns-flip-box-back {
+    transform: rotateY(180deg);
+}
+
+.pns-flip-direction-flip-left:hover .pns-flip-box-inner,
+.pns-flip-direction-flip-left.pns-is-flipped .pns-flip-box-inner {
+    transform: rotateY(-180deg);
+}
+
+/* 2. Flip Right (rotateY: 0 -> 180) */
+.pns-flip-direction-flip-right .pns-flip-box-back {
+    transform: rotateY(-180deg);
+}
+
+.pns-flip-direction-flip-right:hover .pns-flip-box-inner,
+.pns-flip-direction-flip-right.pns-is-flipped .pns-flip-box-inner {
+    transform: rotateY(180deg);
+}
+
+/* 3. Flip Up (rotateX: 0 -> 180) */
+.pns-flip-direction-flip-up .pns-flip-box-back {
+    transform: rotateX(-180deg);
+}
+
+.pns-flip-direction-flip-up:hover .pns-flip-box-inner,
+.pns-flip-direction-flip-up.pns-is-flipped .pns-flip-box-inner {
+    transform: rotateX(180deg);
+}
+
+/* 4. Flip Down (rotateX: 0 -> -180) */
+.pns-flip-direction-flip-down .pns-flip-box-back {
+    transform: rotateX(180deg);
+}
+
+.pns-flip-direction-flip-down:hover .pns-flip-box-inner,
+.pns-flip-direction-flip-down.pns-is-flipped .pns-flip-box-inner {
+    transform: rotateX(-180deg);
+}
+
+/* 5. 3D Push Left */
+.pns-flip-direction-push-left .pns-flip-box-back {
+    transform: rotateY(90deg) translateZ(170px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.pns-flip-direction-push-left:hover .pns-flip-box-front,
+.pns-flip-direction-push-left.pns-is-flipped .pns-flip-box-front {
+    transform: rotateY(-90deg) translateZ(170px);
+    opacity: 0;
+}
+
+.pns-flip-direction-push-left:hover .pns-flip-box-back,
+.pns-flip-direction-push-left.pns-is-flipped .pns-flip-box-back {
+    transform: rotateY(0deg) translateZ(0);
+    opacity: 1;
+}
+
+/* 6. Zoom & Flip */
+.pns-flip-direction-zoom-in .pns-flip-box-front {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.pns-flip-direction-zoom-in .pns-flip-box-back {
+    transform: scale(0.7) rotateY(180deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.4, 1.2), opacity 0.6s ease;
+}
+
+.pns-flip-direction-zoom-in:hover .pns-flip-box-front,
+.pns-flip-direction-zoom-in.pns-is-flipped .pns-flip-box-front {
+    transform: scale(1.15) rotateY(-180deg);
+    opacity: 0;
+}
+
+.pns-flip-direction-zoom-in:hover .pns-flip-box-back,
+.pns-flip-direction-zoom-in.pns-is-flipped .pns-flip-box-back {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+}
+
+/* 7. Fade Cross */
+.pns-flip-direction-fade .pns-flip-box-back {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.pns-flip-direction-fade:hover .pns-flip-box-front,
+.pns-flip-direction-fade.pns-is-flipped .pns-flip-box-front {
+    opacity: 0;
+}
+
+.pns-flip-direction-fade:hover .pns-flip-box-back,
+.pns-flip-direction-fade.pns-is-flipped .pns-flip-box-back {
+    opacity: 1;
+}
+
+/* 3D Content Pop-out Effect */
+.pns-flip-box-3d-pop .pns-flip-box-content {
+    transform: translateZ(50px);
+    transition: transform 0.5s ease;
+}

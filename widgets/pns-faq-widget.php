@@ -33,7 +33,7 @@ class PNS_FAQ_Widget extends \Elementor\Widget_Base {
 	 * Widget Categories
 	 */
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	/**
@@ -880,7 +880,7 @@ class PNS_FAQ_Widget extends \Elementor\Widget_Base {
 			];
 		?>
 			<script type="application/ld+json">
-				<?php echo wp_json_encode( $schema_data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG ); ?>
+				<?php echo wp_json_encode( $schema_data, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE ); ?>
 			</script>
 		<?php endif; ?>
 

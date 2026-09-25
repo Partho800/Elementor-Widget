@@ -5,8 +5,8 @@ class PNS_Image_Hover_Card_Widget extends \Elementor\Widget_Base {
 
     public function get_name() { return 'mss_image_hover_card'; }
     public function get_title() { return __( 'Image Hover Card', 'pns-addons-for-elementor' ); }
-    public function get_icon() { return 'eicon-image-rollover'; }
-    public function get_categories() { return [ 'custom-elementor-category' ]; }
+    public function get_categories() { return [ 'pns-addons-category' ]; }
+    public function get_style_depends() { return [ 'pns-slider-style' ]; }
 
     protected function register_controls() {
 

@@ -33,7 +33,15 @@ class PNS_Slider_Widget extends \Elementor\Widget_Base {
 	 * Get widget categories.
 	 */
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
+	}
+
+	public function get_style_depends() {
+		return [ 'pns-slider-style', 'dashicons' ];
+	}
+
+	public function get_script_depends() {
+		return [ 'pns-slider-script' ];
 	}
 
 	/**
@@ -112,17 +120,17 @@ class PNS_Slider_Widget extends \Elementor\Widget_Base {
 					[
 						'slide_title' => esc_html__( 'Komodo', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => '' ],
+						'slide_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 					[
 						'slide_title' => esc_html__( 'Kerala', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'Beautiful nature and serene backwaters of India.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => '' ],
+						'slide_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 					[
 						'slide_title' => esc_html__( 'Switzerland', 'pns-addons-for-elementor' ),
 						'slide_description' => esc_html__( 'The majestic mountains of Matterhorn.', 'pns-addons-for-elementor' ),
-						'slide_image' => [ 'url' => '' ],
+						'slide_image' => [ 'url' => \Elementor\Utils::get_placeholder_image_src() ],
 					],
 				],
 				'title_field' => '{{{ slide_title }}}',
@@ -656,8 +664,10 @@ class PNS_Slider_Widget extends \Elementor\Widget_Base {
 		?>
 		<div class="mss-main-container">
 			<div class="mss-slide-list">
-				<?php foreach ( $settings['slides'] as $index => $slide ) : ?>
-					<div class="mss-item" style="background-image: url('<?php echo esc_url( $slide['slide_image']['url'] ); ?>');">
+				<?php foreach ( $settings['slides'] as $index => $slide ) : 
+					$slide_img = ! empty( $slide['slide_image']['url'] ) ? $slide['slide_image']['url'] : \Elementor\Utils::get_placeholder_image_src();
+				?>
+					<div class="mss-item" style="background-image: url('<?php echo esc_url( $slide_img ); ?>');">
 						<div class="mss-content">
 							<div class="mss-name"><?php echo esc_html( $slide['slide_title'] ); ?></div>
 							<div class="mss-des"><?php echo esc_html( $slide['slide_description'] ); ?></div>

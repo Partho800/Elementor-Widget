@@ -1,0 +1,363 @@
+/**
+ * PNS Addons for Elementor - Progress Bar & Circular Progress Stylesheet
+ * Version: 1.0.0
+ * Author: PNS Addons
+ */
+
+:root {
+    --pns-pb-primary: #0077b6;
+    --pns-pb-secondary: #00b4d8;
+    --pns-pb-track: #e2e8f0;
+    --pns-pb-text: #0f172a;
+    --pns-pb-muted: #64748b;
+    --pns-pb-radius: 9999px;
+    --pns-pb-transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.pns-progress-wrapper {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pns-progress-wrapper *,
+.pns-progress-wrapper *::before,
+.pns-progress-wrapper *::after {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. LINEAR PROGRESS BAR
+   ========================================================================== */
+.pns-progress-linear-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.pns-progress-linear-item {
+    position: relative;
+    width: 100%;
+}
+
+/* Header Labels (Title on left, Counter on right) */
+.pns-progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.pns-progress-title-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pns-progress-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pns-pb-primary);
+    font-size: 16px;
+}
+
+.pns-progress-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.pns-progress-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--pns-pb-text);
+    margin: 0;
+}
+
+.pns-progress-subtitle {
+    font-size: 13px;
+    color: var(--pns-pb-muted);
+    margin: 2px 0 0 0;
+}
+
+.pns-progress-counter-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--pns-pb-primary);
+}
+
+.pns-progress-number {
+    font-variant-numeric: tabular-nums;
+}
+
+.pns-progress-suffix,
+.pns-progress-prefix {
+    font-size: 0.9em;
+}
+
+/* The Bar Track */
+.pns-progress-track {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background-color: var(--pns-pb-track);
+    border-radius: var(--pns-pb-radius);
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* The Filled Bar */
+.pns-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--pns-pb-primary);
+    border-radius: inherit;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+/* Striped Pattern Effect */
+.pns-progress-striped .pns-progress-fill {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.18) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.18) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 24px 24px;
+}
+
+/* Animated Striped Movement */
+.pns-progress-animated .pns-progress-fill {
+    animation: pns-progress-stripes 1.5s linear infinite;
+}
+
+@keyframes pns-progress-stripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 24px 0;
+    }
+}
+
+/* Inside Bar Layout */
+.pns-layout-inside .pns-progress-track {
+    height: 26px;
+}
+
+.pns-layout-inside .pns-progress-fill {
+    padding: 0 12px;
+}
+
+.pns-progress-inside-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Floating Tooltip / Pin Layout */
+.pns-layout-tooltip .pns-progress-track {
+    overflow: visible;
+    margin-top: 28px;
+}
+
+.pns-progress-tooltip-pin {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    transform: translateX(50%);
+    background: #0f172a;
+    color: #ffffff;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    white-space: nowrap;
+    line-height: 1.2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.pns-progress-tooltip-pin::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: #0f172a transparent transparent transparent;
+}
+
+/* ==========================================================================
+   2. CIRCULAR PROGRESS & GAUGES
+   ========================================================================== */
+.pns-progress-circular-grid {
+    display: grid;
+    gap: 30px;
+    width: 100%;
+    justify-items: center;
+}
+
+.pns-grid-cols-1 {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.pns-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pns-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pns-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.pns-progress-circular-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.pns-circle-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pns-circle-svg {
+    transform: rotate(-90deg);
+    display: block;
+    overflow: visible;
+}
+
+/* Semi-circle & Arch Gauge rotation */
+.pns-circle-gauge-semi .pns-circle-svg {
+    transform: rotate(180deg);
+}
+
+.pns-circle-gauge-arch .pns-circle-svg {
+    transform: rotate(150deg);
+}
+
+.pns-circle-bg {
+    fill: none;
+    stroke: var(--pns-pb-track);
+}
+
+.pns-circle-bar {
+    fill: none;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Center Content */
+.pns-circle-inner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    pointer-events: none;
+}
+
+.pns-circle-inner-icon {
+    font-size: 24px;
+    color: var(--pns-pb-primary);
+    margin-bottom: 4px;
+}
+
+.pns-circle-inner-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.pns-circle-inner-counter {
+    display: inline-flex;
+    align-items: baseline;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--pns-pb-text);
+    line-height: 1;
+}
+
+.pns-circle-inner-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pns-pb-muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Bottom Outer Title and Description */
+.pns-circle-outer-content {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.pns-circle-outer-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pns-pb-text);
+    margin: 0 0 4px 0;
+}
+
+.pns-circle-outer-desc {
+    font-size: 13px;
+    color: var(--pns-pb-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   3. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .pns-grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .pns-grid-cols-3,
+    .pns-grid-cols-4,
+    .pns-grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}

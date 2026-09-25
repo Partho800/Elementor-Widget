@@ -27,11 +27,15 @@ class PNS_What_We_Do_Widget extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'custom-elementor-category' ];
+		return [ 'pns-addons-category' ];
 	}
 
 	public function get_keywords() {
 		return [ 'business', 'feature', 'card', 'what we do', 'about', 'custom' ];
+	}
+
+	public function get_style_depends() {
+		return [ 'pns-widget-style' ];
 	}
 
 	public function get_script_depends() {
